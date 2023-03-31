@@ -10,16 +10,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.github.raziu75.weatherapp2.dataService.WeatherIcons
 import com.github.raziu75.weatherapp2.model.APIResults
 
 @Composable
 fun WeatherView(result: APIResults) {
-    val config = LocalConfiguration.current
-    val maxWidth = config.screenWidthDp
     val main = result.list[0].main
     val weather = result.list[0].weatherList[0]
 
@@ -28,7 +24,8 @@ fun WeatherView(result: APIResults) {
             .padding(8.dp)
             .fillMaxWidth(),
         elevation = 8.dp,
-        backgroundColor = MaterialTheme.colors.primary
+        backgroundColor = MaterialTheme.colors.primary,
+        shape = MaterialTheme.shapes.large
     ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -36,19 +33,35 @@ fun WeatherView(result: APIResults) {
             modifier = Modifier.padding(8.dp)
         ) {
             Text(text = result.city.name, style = MaterialTheme.typography.h3)
-            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ) {
                 Image(
                     painter = painterResource(id = WeatherIcons().icon(weather.icon)),
                     contentDescription = null,
-                    modifier = Modifier.width(96.dp).height(96.dp)
+                    modifier = Modifier
+                        .width(96.dp)
+                        .height(96.dp)
                 )
-                Text(text = "${main.temperature}°C",
+                Text(
+                    text = "${main.temperature}°C",
                     style = MaterialTheme.typography.h2,
                     color = MaterialTheme.colors.secondary,
-                    )
+                )
             }
-            Text(text = weather.weatherDescription,
+            Text(
+                text = weather.weatherDescription,
+                style = MaterialTheme.typography.h6
             )
+            Spacer(modifier = Modifier.height(8.dp))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ) {
+                Text(text = "Max: ${main.maxTemperature}°C", style = MaterialTheme.typography.h6)
+                Text(text = "Min: ${main.minTemperature}°C", style = MaterialTheme.typography.h6)
+            }
 
 
         }

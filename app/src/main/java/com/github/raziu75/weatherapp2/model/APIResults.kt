@@ -17,6 +17,8 @@ data class APIResults(
     ) {
         data class WeatherMain(
             @SerializedName("temp") val temperature: Float,
+            @SerializedName("temp_min") val minTemperature: Float,
+            @SerializedName("temp_max") val maxTemperature: Float,
             @SerializedName("humidity") val humidity: Int,
             @SerializedName("pressure") val pressure: Int,
 
