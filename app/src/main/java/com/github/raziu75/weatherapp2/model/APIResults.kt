@@ -12,9 +12,15 @@ data class APIResults(
 
     data class WeatherDetail(
         @SerializedName("main") val main: WeatherMain,
-        @SerializedName("weather") val weatherList: List<WeatherWeather>
-
+        @SerializedName("weather") val weatherList: List<WeatherWeather>,
+        @SerializedName("visibility") val visibility: Int,
+        @SerializedName("wind") val windDetails: WindDetails
     ) {
+
+        data class WindDetails(
+            @SerializedName("speed") val speed: Double,
+        )
+
         data class WeatherMain(
             @SerializedName("temp") val temperature: Float,
             @SerializedName("temp_min") val minTemperature: Float,
