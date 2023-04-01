@@ -12,17 +12,14 @@ import com.github.raziu75.weatherapp2.model.APIResults
 
 @Composable
 fun WeatherDetails(result: APIResults) {
-    val main = result.list[0].main
-    val weather = result.list[0].weatherList[0]
+    val weatherMain = result.list[0].main
 
     Column(
-        modifier = androidx.compose.ui.Modifier
-            .fillMaxSize()
+        modifier = Modifier
     ) {
-
         Row(
             horizontalArrangement = Arrangement.Center,
-            modifier = androidx.compose.ui.Modifier
+            modifier = Modifier
                 .fillMaxWidth()
         ) {
             Card(
@@ -43,18 +40,11 @@ fun WeatherDetails(result: APIResults) {
                         text = "Humidité",
                         style = MaterialTheme.typography.h6,
                     )
-                    Column(
-                        modifier = Modifier.fillMaxSize(),
-                        verticalArrangement = Arrangement.Center,
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        Text(
-                            text = "${main.humidity}%",
-                            style = MaterialTheme.typography.h4,
-                            color = MaterialTheme.colors.secondary
-                        )
-                    }
-
+                    Text(
+                        text = "${weatherMain.humidity}%",
+                        style = MaterialTheme.typography.h4,
+                        color = MaterialTheme.colors.secondary
+                    )
                 }
             }
 
@@ -82,19 +72,18 @@ fun WeatherDetails(result: APIResults) {
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Text(
-                            text = "${main.pressure}\n hPa",
+                            text = "${weatherMain.pressure}\n hPa",
                             style = MaterialTheme.typography.h4,
                             color = MaterialTheme.colors.secondary
                         )
                     }
-
                 }
             }
         }
 
         Row(
             horizontalArrangement = Arrangement.Center,
-            modifier = androidx.compose.ui.Modifier
+            modifier = Modifier
                 .fillMaxWidth()
         ) {
             Card(

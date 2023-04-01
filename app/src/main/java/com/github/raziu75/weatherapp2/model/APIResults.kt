@@ -14,7 +14,9 @@ data class APIResults(
         @SerializedName("main") val main: WeatherMain,
         @SerializedName("weather") val weatherList: List<WeatherWeather>,
         @SerializedName("visibility") val visibility: Int,
-        @SerializedName("wind") val windDetails: WindDetails
+        @SerializedName("wind") val windDetails: WindDetails,
+        @SerializedName("dt_txt") val days : String,
+
     ) {
 
         data class WindDetails(

@@ -42,18 +42,4 @@ class WeatherViewModel : ViewModel() {
         val type = object : TypeToken<APIResults>() {}.type
         return gson.fromJson(string, type)
     }
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
